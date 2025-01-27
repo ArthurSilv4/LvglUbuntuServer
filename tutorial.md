@@ -18,6 +18,15 @@ no projeto mude a configuração do build para suportar a arquitetura da ihm
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=atom -mtune=generic")
     ```
 
+# Compilar o projeto
+
+    ```bash
+    mkdir build
+    cd build
+    cmake -G Ninja ..
+
+    ```
+
 # Instalar o ubuntu
 - baixar a iso e instalar
 
@@ -54,6 +63,26 @@ no projeto mude a configuração do build para suportar a arquitetura da ihm
     sudo apt install mesa-utils libgl1-mesa-dev xvfb
 
 
+
+
+----
+    sudo apt install openbox xorg
+    sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
+    startx ./bin/main
+----
+
+
+
+
+# Instalar o driver de touch
+
+- baixar o driver do touchkit
+- descompactar e entrar na pasta
+
+    ```bash
+    sudo ./setup.sh
+    ```
+
 # Passar o bin e executar
 
 - copiar o arquivo para o pendrive
@@ -78,14 +107,10 @@ no projeto mude a configuração do build para suportar a arquitetura da ihm
 - executar
 
     ```bash
-    ./bin/main
+    startx ./bin/main
     ```
 
-----
-    sudo apt install openbox xorg
-    sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
-    startx ./bin/main
-----
+
 
 # Depois de executado
 - fechar todas abas
