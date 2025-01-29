@@ -25,6 +25,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -mtune=generic")
 mkdir build
 cd build
 cmake -G Ninja ..
+ninja
 ```
 
 # IHM
@@ -119,6 +120,7 @@ sudo cp /mnt/pendrive/bin /lvgl
 - Executar:
 
 ```bash
+chmod +x ./bin/main
 startx ./bin/main
 ```
 
