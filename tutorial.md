@@ -1,120 +1,131 @@
-# Iniciando o projeto
+# Ambiente de Desenvolvimento
 
-[Link projeto github](https://github.com/lvgl/lv_port_pc_vscode)
+## Iniciando o Projeto
 
+[Link para o projeto no GitHub](https://github.com/lvgl/lv_port_pc_vscode)
 
+```bash
+git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
+```
 
-    ```bash
-    git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
-    ```
+## Configurando o Projeto
 
-# Configurando o projeto
-no projeto mude a configuração do build para suportar a arquitetura da ihm
+No projeto, mude a configuração do build para suportar a arquitetura da IHM:
 
-- no arquivo CMakeList.txt mude para 
+- No arquivo `CMakeList.txt`, mude para:
 
-    ```c
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=atom -mtune=generic")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=atom -mtune=generic")
-    ```
+```c
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=x86-64 -mtune=generic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -mtune=generic")
+```
 
-# Compilar o projeto
+## Compilar o Projeto
 
-    ```bash
-    mkdir build
-    cd build
-    cmake -G Ninja ..
+```bash
+mkdir build
+cd build
+cmake -G Ninja ..
+```
 
-    ```
+# IHM
 
-# Instalar o ubuntu
-- baixar a iso e instalar
+## Instalar o Ubuntu
 
+- Baixar a ISO e instalar.
 
-# Configurar a placa de rede:
+## Configurar a Placa de Rede
 
-### Mandar o arquivo 00-installer para o ubuntu
+### Mandar o Arquivo `00-installer` para o Ubuntu
 
-- copiar o arquivo para o pendrive
+- Copiar o arquivo para o pendrive, inserir na IHM e montar o pendrive:
 
-- montar o pendriver
+```bash
+lsblk
+sudo mkdir /mnt/pendrive
+sudo mount /dev/sdb1 /mnt/pendrive
+```
 
-    ```bash
-    lsblk
+- Copiar o arquivo para o Ubuntu:
 
-    sudo mkdir /mnt/pendrive
+```bash
+sudo cp /mnt/pendrive/00-installer-config.yaml /etc/netplan/
+sudo netplan apply
+```
 
-    sudo mount /dev/sdb1 /mnt/pendrive
-    ```
+## Instalar as Bibliotecas
 
-- copiar o arquivo para o ubuntu
-   
-   ```bash
-   sudo cp /mnt/pendrive/00-installer-config.yaml /etc/netplan/
+```bash
+sudo apt install build-essential xorg xserver-xorg xinit libgl1-mesa-dev libinput-dev libudev-dev
+sudo apt install openbox xorg
+sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
+```
 
-   sudo netplan apply
-   ```
+## Instalar o Driver de Touch na IHM
 
-# Instalar as blibiotecas
+- Baixar o driver do TouchKit:
+[Link do driver](https://www.eeti.com/drivers_Linux.html)
 
-    
-    sudo apt update
-    sudo apt install libsdl2-2.0-0 libsdl2-dev
-    sudo apt install mesa-utils libgl1-mesa-dev xvfb
+- Descompactar, entrar na pasta e executar o arquivo `.sh`:
 
+```bash
+sudo ./setup.sh
+```
 
+- Instalar o `evtest` para verificar se o touch está funcionando:
 
+```bash
+sudo apt install evtest
+sudo evtest
+```
 
-----
-    sudo apt install openbox xorg
-    sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
-    startx ./bin/main
-----
+## Configurar Mapeamento de Touch
 
+- Instalar:
 
+```bash
+sudo apt install xinput-calibrator
+```
 
+- Configurar:
 
-# Instalar o driver de touch
+```bash
+startx
+```
 
-- baixar o driver do touchkit
-- descompactar e entrar na pasta
+- Apertar `CTRL + Alt + F2`:
 
-    ```bash
-    sudo ./setup.sh
-    ```
+```bash
+export DISPLAY=:0
+xinput_calibrator
+```
 
-# Passar o bin e executar
+## Passar o Binário e Executar
 
-- copiar o arquivo para o pendrive
+- Copiar o arquivo para o pendrive e montar o pendrive:
 
-- montar o pendriver
+```bash
+lsblk
+sudo mkdir /mnt/pendrive
+sudo mount /dev/sdb1 /mnt/pendrive
+```
 
-    ```bash
-    lsblk
+- Copiar o arquivo para o Ubuntu:
 
-    sudo mkdir /mnt/pendrive
+```bash
+sudo mkdir lvgl
+sudo cp /mnt/pendrive/bin /lvgl
+```
 
-    sudo mount /dev/sdb1 /mnt/pendrive
-    ```
-- copie o arquivo para o ubuntu
+- Executar:
 
-    ```bash
-    sudo mkdir lvgl
+```bash
+startx ./bin/main
+```
 
-    sudo cp /mnt/pendrive/bin /lvgl
-    ```
+# Depois de Executado
 
-- executar
+- Fechar todas as abas, apertar `F1` ao `F6` para abrir nova aba:
 
-    ```bash
-    startx ./bin/main
-    ```
-
-
-
-# Depois de executado
-- fechar todas abas
-
-    ```bash
-    sudo pkill X
-    ```
+```bash
+sudo pkill X
+```
