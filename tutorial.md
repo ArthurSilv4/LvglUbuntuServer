@@ -58,7 +58,7 @@ sudo netplan apply
 ```bash
 sudo apt install build-essential xorg xserver-xorg xinit libgl1-mesa-dev libinput-dev libudev-dev
 sudo apt install openbox xorg
-sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
+sudo apt install libsdl2-2.0-0 libsdl2-dev mesa-utils
 ```
 
 ## Instalar o Driver de Touch na IHM
@@ -66,9 +66,16 @@ sudo apt install libsdl2-2.0-0 libsdl2-dev libgl1-mesa-dev mesa-utils
 - Baixar o driver do TouchKit:
 [Link do driver](https://www.eeti.com/drivers_Linux.html)
 
-- Descompactar, entrar na pasta e executar o arquivo `.sh`:
+- copiar arquivo para a ihm, Descompactar, entrar na pasta e executar o arquivo `.sh`:
 
 ```bash
+sudo apt install p7zip-full -y
+
+cp arquivo /home/branqs
+7z x arquivo.7z
+
+cd arquivo
+chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
@@ -90,7 +97,7 @@ sudo apt install xinput-calibrator
 - Configurar:
 
 ```bash
-startx
+startx ./bin/main
 ```
 
 - Apertar `CTRL + Alt + F2`:
@@ -99,6 +106,58 @@ startx
 export DISPLAY=:0
 xinput_calibrator
 ```
+
+```bash
+sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
+```
+
+```plaintext
+Section "InputClass"
+    Identifier "calibration"
+    MatchProduct "eGalaxTouch Virtual Device for Single"
+    Option "MinX" "23293"
+    Option "MaxX" "23468"
+    Option "MinY" "46570"
+    Option "MaxY" "46741"
+    Option "SwapXY" "1" # Use 1 para trocar os eixos, 0 para não trocar
+    Option "InvertX" "0" # Use 1 para inverter o eixo X, 0 para manter normal
+    Option "InvertY" "0" # Use 1 para inverter o eixo Y, 0 para manter normal
+EndSection
+````
+
+```bash
+xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+```
+
+normal
+```bash
+1 0 0
+0 1 0
+0 0 1
+```
+
+90 graus
+```bash
+0 -1  1 
+1  0  0
+0  0  1
+```
+
+180graus(invertido)
+
+```bash
+-1  0  1
+ 0 -1  1
+ 0  0  1
+```
+
+270 graus(rotacionado)
+```bash
+ 0 1 0
+-1 0 1
+ 0 0 1
+```
+
 
 ## Passar o Binário e Executar
 
