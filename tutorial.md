@@ -126,7 +126,7 @@ EndSection
 ````
 
 ```bash
-xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
 ```
 
 normal
