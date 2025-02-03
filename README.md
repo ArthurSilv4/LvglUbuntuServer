@@ -19,7 +19,7 @@
 
 ## Iniciando o Projeto
 
-Clone o repositório do projeto no GitHub:
+Clone o repositório do projeto no GitHub: [Link do repo](https://github.com/lvgl/lv_port_pc_vscode)
 
 ```bash
 git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
