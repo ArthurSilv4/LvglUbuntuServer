@@ -113,11 +113,17 @@ git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
 
 O parâmetro `--recursive` garante que todos os submódulos do projeto também sejam baixados.
 
-Entre no projeto:
-
+Instale o wget
 ```bash 
 sudo apt-get install wget
+```
+
+Entre no projeto
+```bash
 cd lv_port_pc_vscode
+```
+
+```bash
 code .
 ```
 
