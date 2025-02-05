@@ -122,7 +122,6 @@ ninja
 
 # IHM
 
-
 ### 1. Instalar o Ubuntu Server na IHM
 
 #### 1.1 Baixar a ISO
@@ -168,6 +167,8 @@ sudo netplan apply
 
 </details>
 
+---
+
 ### 2. Instalar Pacotes Necessários
 
 Atualize e instale os pacotes essenciais:
@@ -182,6 +183,8 @@ sudo apt install -y openbox xorg libsdl2-2.0-0 libsdl2-dev mesa-utils
 
 - `xorg`, `xserver-xorg` → Servidor gráfico
 - `libsdl2-dev` → Biblioteca SDL2 para renderização gráfica
+
+---
 
 ### 3. Configurar o Touchscreen
 
@@ -210,36 +213,25 @@ sudo apt install evtest -y
 sudo evtest
 ```
 
-Escolha o dispositivo correto e toque na tela para verificar a resposta.
+---
 
-## Configurar Mapeamento de Touch
+### 4. Configurar o Mapeamento do Touch
 
-1. Instale o `xinput-calibrator`:
-
-```bash
-sudo apt install xinput-calibrator
-```
-
-2. Configure o mapeamento de touch:
+Instale o calibrador e configure os eixos:
 
 ```bash
-startx ./bin/main
-```
-
-3. Aperte `CTRL + Alt + F2` e execute:
-
-```bash
+sudo apt install xinput-calibrator -y
 export DISPLAY=:0
 xinput_calibrator
 ```
 
-4. Edite o arquivo de configuração:
+Adicione as configurações em:
 
 ```bash
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
 
-Adicione o seguinte conteúdo:
+E insira:
 
 ```plaintext
 Section "InputClass"
@@ -249,118 +241,81 @@ Section "InputClass"
     Option "MaxX" "23468"
     Option "MinY" "46570"
     Option "MaxY" "46741"
-    Option "SwapXY" "1" # Use 1 para trocar os eixos, 0 para não trocar
-    Option "InvertX" "0" # Use 1 para inverter o eixo X, 0 para manter normal
-    Option "InvertY" "0" # Use 1 para inverter o eixo Y, 0 para manter normal
+    Option "SwapXY" "1"
+    Option "InvertX" "0"
+    Option "InvertY" "0"
 EndSection
 ```
 
-5. Configure a matriz de transformação:
+Salve (CTRL + X, Y, Enter).
+
+---
+
+### 5. Transferir o Binário do LVGL
+
+Monte um pendrive e copie os arquivos:
 
 ```bash
-xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
+sudo mkdir /mnt/usb
+sudo mount /dev/sdb1 /mnt/usb
+sudo cp /mnt/usb/bin /home/$USER/lvgl/
 ```
 
-### Matrizes de Transformação
-
-Normal:
+Dê permissão e execute:
 
 ```bash
-1 0 0
-0 1 0
-0 0 1
+chmod +x /home/$USER/lvgl/bin/main
+startx /home/$USER/lvgl/bin/main
 ```
 
-90 graus:
+---
 
-```bash
-0 -1 1 
-1 0 0
-0 0 1
-```
+### 6. Configurar o LVGL para Iniciar Automaticamente
 
-180 graus (invertido):
-
-```bash
--1 0 1
-0 -1 1
-0 0 1
-```
-
-270 graus (rotacionado):
-
-```bash
-0 1 0
--1 0 1
-0 0 1
-```
-
-## Passar o Binário e Executar
-
-1. Copie o arquivo para o pendrive e monte o pendrive:
-
-```bash
-lsblk
-sudo mkdir /mnt/pendrive
-sudo mount /dev/sdb1 /mnt/pendrive
-```
-
-2. Copie o arquivo para o Ubuntu:
-
-```bash
-sudo mkdir lvgl
-sudo cp /mnt/pendrive/bin /lvgl
-```
-
-3. Execute o binário:
-
-```bash
-chmod +x ./bin/main
-startx ./bin/main
-```
-
-## Iniciar o lvgl ao iniciar o sistema
-
-1. Edite o arquivo `~/.xinitrc`:
+Crie o arquivo `~/.xinitrc`:
 
 ```bash
 nano ~/.xinitrc
 ```
 
-Adicione os comandos:
+Adicione:
 
-```bash
+```plaintext
 xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
 ./main
 ```
 
-Salve e saia. Dê permissão de execução:
+Dê permissão:
 
 ```bash
 chmod +x ~/.xinitrc
 ```
 
-2. Edite o arquivo `~/.bash_profile`:
+Edite o `.bash_profile` para iniciar automaticamente:
 
 ```bash
 nano ~/.bash_profile
 ```
 
-Adicione os comandos, salve e saia:
+Adicione:
 
-```bash
+```plaintext
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    startx 
+    startx
 fi
 ```
 
-3. Reinicie o sistema e teste com `CTRL + ALT + F2`:
+Reinicie a IHM:
 
 ```bash
 sudo reboot
 ```
 
-# Depois de Executado
+Agora, o LVGL iniciará automaticamente ao ligar! 🚀
+
+---
+
+### Depois de Executado
 
 Para fechar todas as abas, aperte `CTRL + ALT + F1` ao `F6` para abrir uma nova aba e execute:
 
