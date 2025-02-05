@@ -81,6 +81,8 @@ Se aparecer um número de versão, significa que está funcionando.
 
 ![WSL Extension](/img/extensaoWsl.png)
 
+Reinicie o vscode
+
 ### Iniciando o Projeto
 
 #### Clonar o Repositório
@@ -112,7 +114,7 @@ Isso garantirá que o código seja otimizado para arquitetura x86-64 e compatív
 
 ### Compilar o Projeto
 
-Agora, crie um diretório de build, configure o projeto e compile-o usando o Ninja:
+Agora no terminal do vscode, crie um diretório de build, configure o projeto e compile-o usando o Ninja:
 
 ```bash
 mkdir build
