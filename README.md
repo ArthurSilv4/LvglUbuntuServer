@@ -89,6 +89,11 @@ Reinicie o vscode
 
 Crie uma pasta dentro do Ubuntu (Wsl) e faça o clone do repositorio
 
+```bash
+mkdir repo
+cd repo
+```
+
 Clone o repositório do projeto no GitHub: [Repo official](https://github.com/lvgl/lv_port_pc_vscode)
 
 ```bash
@@ -97,7 +102,24 @@ git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
 
 O parâmetro `--recursive` garante que todos os submódulos do projeto também sejam baixados.
 
+Entre no projeto
+
+```bash 
+sudo apt-get install wget
+cd lv_port_pc_vscode
+code .
+```
+
+
 ### Configurando o Projeto
+
+#### Verifique os submodule 
+
+Abra as pastas lvgl e freeRtos e verifique se elas estao vazias, se estiver vazia escreva o seguinte comando no terminal:
+
+```bash
+git submodule update --init --recursive
+```
 
 #### Ajustar Configurações do Build
 
@@ -114,7 +136,7 @@ Isso garantirá que o código seja otimizado para arquitetura x86-64 e compatív
 
 ### Compilar o Projeto
 
-Agora no terminal do vscode, crie um diretório de build, configure o projeto e compile-o usando o Ninja:
+Agora no terminal, crie um diretório de build, configure o projeto e compile-o usando o Ninja:
 
 ```bash
 mkdir build
