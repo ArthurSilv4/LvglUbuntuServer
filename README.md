@@ -15,28 +15,93 @@
 
 ---
 
-# Ambiente de Desenvolvimento
+## Ambiente de Desenvolvimento
 
-## Iniciando o Projeto
+### Configurando o Ambiente WSL
 
-Clone o repositório do projeto no GitHub: [Link do repo](https://github.com/lvgl/lv_port_pc_vscode)
+📌 Documentação oficial: [Guia WSL](https://docs.microsoft.com/pt-br/windows/wsl/)
+
+#### 1. Instalar o WSL
+
+**Abrir o Prompt de Comando (CMD)**
+
+Pressione `Windows + R`, digite `cmd` e pressione `Enter`.
+
+**Executar o comando de instalação**
+
+No terminal, digite:
+
+```powershell
+wsl --install
+```
+
+Isso instalará o WSL 2 e o Ubuntu automaticamente.
+
+**Configurar o Ubuntu**
+
+Após a instalação, o Ubuntu será iniciado automaticamente. Configure um nome de usuário e senha conforme solicitado.
+
+**Atualizar o sistema**
+
+Após o primeiro login no Ubuntu, execute:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+Isso garantirá que todos os pacotes estejam atualizados.
+
+#### 2. Instalar Dependências
+
+No terminal do Ubuntu, instale os pacotes necessários para compilar o projeto:
+
+```bash
+sudo apt install -y build-essential cmake ninja-build git
+```
+
+- `build-essential` → Ferramentas básicas de compilação
+- `cmake` → Gerenciador de build
+- `ninja-build` → Compilador rápido
+- `git` → Para clonar o repositório
+
+Para verificar se o Ninja foi instalado corretamente, execute:
+
+```bash
+ninja --version
+```
+
+Se aparecer um número de versão, significa que está funcionando.
+
+### Iniciando o Projeto
+
+#### 1. Clonar o Repositório
+
+Clone o repositório do projeto no GitHub: [Repo official](https://github.com/lvgl/lv_port_pc_vscode)
 
 ```bash
 git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
 ```
 
-## Configurando o Projeto
+O parâmetro `--recursive` garante que todos os submódulos do projeto também sejam baixados.
 
-No projeto, mude a configuração do build para suportar a arquitetura da IHM. Edite o arquivo `CMakeList.txt` e altere as seguintes linhas:
+### Configurando o Projeto
 
-```c
+#### 1. Ajustar Configurações do Build
+
+No projeto, altere a configuração do CMake para suportar a arquitetura da IHM.
+
+Edite o arquivo `CMakeLists.txt` e modifique as seguintes linhas:
+
+```cmake
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=x86-64 -mtune=generic")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -mtune=generic")
 ```
 
-## Compilar o Projeto
+Isso garantirá que o código seja otimizado para arquitetura x86-64 e compatível com processadores modernos.
 
-Crie um diretório de build, configure e compile o projeto usando Ninja:
+### Compilar o Projeto
+
+Agora, crie um diretório de build, configure o projeto e compile-o usando o Ninja:
 
 ```bash
 mkdir build
@@ -44,6 +109,11 @@ cd build
 cmake -G Ninja ..
 ninja
 ```
+
+- `mkdir build` → Cria a pasta de compilação
+- `cd build` → Entra na pasta
+- `cmake -G Ninja ..` → Configura o build para usar o Ninja
+- `ninja` → Compila o código rapidamente
 
 # IHM
 
