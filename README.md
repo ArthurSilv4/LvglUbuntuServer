@@ -119,7 +119,7 @@ ninja
 
 ## Instalar o Ubuntu
 
-Baixe a ISO do Ubuntu e instale no dispositivo.
+Baixe a ISO do Ubuntu e instale no dispositivo. [Link da iso](https://ubuntu.com/download/server)
 
 ## Possíveis erros
 
