@@ -1,24 +1,23 @@
 # Sumário
 1. [Ambiente de Desenvolvimento](#ambiente-de-desenvolvimento)
     1. [Configurando o Ambiente WSL](#configurando-o-ambiente-wsl)
-        1. [Instalar o WSL](#1-instalar-o-wsl)
-        2. [Instalar Dependências](#2-instalar-dependências)
+        1. [Instalar o WSL](#instalar-o-wsl)
+        2. [Instalar Dependências](#instalar-dependências)
     2. [Iniciando o Projeto](#iniciando-o-projeto)
-        1. [Clonar o Repositório](#1-clonar-o-repositório)
+        1. [Clonar o Repositório](#clonar-o-repositório)
     3. [Configurando o Projeto](#configurando-o-projeto)
-        1. [Ajustar Configurações do Build](#1-ajustar-configurações-do-build)
+        1. [Ajustar Configurações do Build](#ajustar-configurações-do-build)
     4. [Compilar o Projeto](#compilar-o-projeto)
 2. [IHM](#ihm)
     1. [Instalar o Ubuntu](#instalar-o-ubuntu)
-    2. [Possíveis erros](#possíveis-erros)
+    2. [Possíveis Erros](#possíveis-erros)
     3. [Instalar as Bibliotecas](#instalar-as-bibliotecas)
     4. [Instalar o Driver de Touch na IHM](#instalar-o-driver-de-touch-na-ihm)
     5. [Configurar Mapeamento de Touch](#configurar-mapeamento-de-touch)
         1. [Matrizes de Transformação](#matrizes-de-transformação)
     6. [Passar o Binário e Executar](#passar-o-binário-e-executar)
-    7. [Iniciar o lvgl ao iniciar o sistema](#iniciar-o-lvgl-ao-iniciar-o-sistema)
+    7. [Iniciar o LVGL ao Iniciar o Sistema](#iniciar-o-lvgl-ao-iniciar-o-sistema)
 3. [Depois de Executado](#depois-de-executado)
----
 
 ## Ambiente de Desenvolvimento
 
@@ -26,7 +25,7 @@
 
 📌 Documentação oficial: [Guia WSL](https://docs.microsoft.com/pt-br/windows/wsl/)
 
-#### 1. Instalar o WSL
+#### Instalar o WSL
 
 **Abrir o Prompt de Comando (CMD)**
 
@@ -41,6 +40,7 @@ wsl --install
 ```
 
 Isso instalará o WSL 2 e o Ubuntu automaticamente.
+Apois isso reinicie o pc.
 
 **Configurar o Ubuntu**
 
@@ -56,7 +56,7 @@ sudo apt update && sudo apt upgrade -y
 
 Isso garantirá que todos os pacotes estejam atualizados.
 
-#### 2. Instalar Dependências
+#### Instalar Dependências
 
 No terminal do Ubuntu, instale os pacotes necessários para compilar o projeto:
 
@@ -77,9 +77,15 @@ ninja --version
 
 Se aparecer um número de versão, significa que está funcionando.
 
+#### Abra o vscode e baixe a extensão do wsl
+
+![WSL Extension](/img/extensaoWsl.png)
+
 ### Iniciando o Projeto
 
-#### 1. Clonar o Repositório
+#### Clonar o Repositório
+
+Crie uma pasta dentro do Ubuntu (Wsl) e faça o clone do repositorio
 
 Clone o repositório do projeto no GitHub: [Repo official](https://github.com/lvgl/lv_port_pc_vscode)
 
@@ -91,7 +97,7 @@ O parâmetro `--recursive` garante que todos os submódulos do projeto também s
 
 ### Configurando o Projeto
 
-#### 1. Ajustar Configurações do Build
+#### Ajustar Configurações do Build
 
 No projeto, altere a configuração do CMake para suportar a arquitetura da IHM.
 
@@ -120,15 +126,15 @@ ninja
 - `cmake -G Ninja ..` → Configura o build para usar o Ninja
 - `ninja` → Compila o código rapidamente
 
-# IHM
+## IHM
 
-### 1. Instalar o Ubuntu Server na IHM
+### Instalar o Ubuntu Server na IHM
 
-#### 1.1 Baixar a ISO
+#### Baixar a ISO
 
 Acesse o site oficial do Ubuntu Server e baixe a versão compatível: [Link para download](https://ubuntu.com/download/server)
 
-#### 1.2 Criar um Pendrive Bootável com Rufus
+#### Criar um Pendrive Bootável com Rufus
 
 1. Conecte um pendrive (mínimo 8GB) no PC.
 2. Baixe e instale o Rufus.
@@ -137,12 +143,12 @@ Acesse o site oficial do Ubuntu Server e baixe a versão compatível: [Link para
     - **Boot Selection** → Clique em "Selecionar" e escolha a ISO do Ubuntu Server.
 4. Clique em "Iniciar" e aguarde a criação do pendrive bootável.
 
-#### 1.3 Instalar o Ubuntu Server
+#### Instalar o Ubuntu Server
 
 1. Insira o pendrive na IHM e reinicie.
 2. No boot, selecione o pendrive como dispositivo de inicialização.
 
-### Possíveis erros
+### Possíveis Erros
 
 <details>
 <summary>Erro de rede</summary>
@@ -167,9 +173,7 @@ sudo netplan apply
 
 </details>
 
----
-
-### 2. Instalar Pacotes Necessários
+### Instalar Pacotes Necessários
 
 Atualize e instale os pacotes essenciais:
 
@@ -184,11 +188,9 @@ sudo apt install -y openbox xorg libsdl2-2.0-0 libsdl2-dev mesa-utils
 - `xorg`, `xserver-xorg` → Servidor gráfico
 - `libsdl2-dev` → Biblioteca SDL2 para renderização gráfica
 
----
+### Configurar o Touchscreen
 
-### 3. Configurar o Touchscreen
-
-#### 3.1 Instalar o Driver do Touch
+#### Instalar o Driver do Touch
 
 Baixe o driver do site oficial TouchKit em um pc com internet: [Link do driver](https://www.eeti.com/drivers_Linux.html)
 
@@ -204,7 +206,7 @@ chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
-#### 3.2 Testar o Touch
+#### Testar o Touch
 
 Instale e rode o evtest:
 
@@ -213,9 +215,7 @@ sudo apt install evtest -y
 sudo evtest
 ```
 
----
-
-### 4. Configurar o Mapeamento do Touch
+### Configurar o Mapeamento do Touch
 
 Instale o calibrador e configure os eixos:
 
@@ -249,9 +249,7 @@ EndSection
 
 Salve (CTRL + X, Y, Enter).
 
----
-
-### 5. Transferir o Binário do LVGL
+### Transferir o Binário do LVGL
 
 Monte um pendrive e copie os arquivos:
 
@@ -268,9 +266,7 @@ chmod +x /home/$USER/lvgl/bin/main
 startx /home/$USER/lvgl/bin/main
 ```
 
----
-
-### 6. Configurar o LVGL para Iniciar Automaticamente
+### Configurar o LVGL para Iniciar Automaticamente
 
 Crie o arquivo `~/.xinitrc`:
 
@@ -300,7 +296,7 @@ nano ~/.bash_profile
 Adicione:
 
 ```plaintext
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
     startx
 fi
 ```
@@ -313,9 +309,7 @@ sudo reboot
 
 Agora, o LVGL iniciará automaticamente ao ligar! 🚀
 
----
-
-### Depois de Executado
+## Depois de Executado
 
 Para fechar todas as abas, aperte `CTRL + ALT + F1` ao `F6` para abrir uma nova aba e execute:
 
