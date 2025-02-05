@@ -3,21 +3,29 @@
     1. [Configurando o Ambiente WSL](#configurando-o-ambiente-wsl)
         1. [Instalar o WSL](#instalar-o-wsl)
         2. [Instalar Dependências](#instalar-dependências)
+        3. [Configurar o VSCode com WSL](#configurar-o-vscode-com-wsl)
     2. [Iniciando o Projeto](#iniciando-o-projeto)
         1. [Clonar o Repositório](#clonar-o-repositório)
     3. [Configurando o Projeto](#configurando-o-projeto)
-        1. [Ajustar Configurações do Build](#ajustar-configurações-do-build)
+        1. [Verificar Submódulos](#verificar-submódulos)
+        2. [Ajustar Configurações do Build](#ajustar-configurações-do-build)
     4. [Compilar o Projeto](#compilar-o-projeto)
 2. [IHM](#ihm)
-    1. [Instalar o Ubuntu](#instalar-o-ubuntu)
+    1. [Instalar o Ubuntu Server na IHM](#instalar-o-ubuntu-server-na-ihm)
+        1. [Baixar a ISO](#baixar-a-iso)
+        2. [Criar um Pendrive Bootável com Rufus](#criar-um-pendrive-bootável-com-rufus)
+        3. [Instalar o Ubuntu Server](#instalar-o-ubuntu-server)
     2. [Possíveis Erros](#possíveis-erros)
-    3. [Instalar as Bibliotecas](#instalar-as-bibliotecas)
-    4. [Instalar o Driver de Touch na IHM](#instalar-o-driver-de-touch-na-ihm)
-    5. [Configurar Mapeamento de Touch](#configurar-mapeamento-de-touch)
-        1. [Matrizes de Transformação](#matrizes-de-transformação)
-    6. [Passar o Binário e Executar](#passar-o-binário-e-executar)
-    7. [Iniciar o LVGL ao Iniciar o Sistema](#iniciar-o-lvgl-ao-iniciar-o-sistema)
+    3. [Instalar Pacotes Necessários](#instalar-pacotes-necessários)
+    4. [Configurar o Touchscreen](#configurar-o-touchscreen)
+        1. [Instalar o Driver do Touch](#instalar-o-driver-do-touch)
+        2. [Testar o Touch](#testar-o-touch)
+        3. [Configurar o Mapeamento do Touch](#configurar-o-mapeamento-do-touch)
+    5. [Transferir o Binário do LVGL](#transferir-o-binário-do-lvgl)
+    6. [Configurar o LVGL para Iniciar Automaticamente](#configurar-o-lvgl-para-iniciar-automaticamente)
 3. [Depois de Executado](#depois-de-executado)
+
+---
 
 ## Ambiente de Desenvolvimento
 
@@ -39,8 +47,7 @@ No terminal, digite:
 wsl --install
 ```
 
-Isso instalará o WSL 2 e o Ubuntu automaticamente.
-Apois isso reinicie o pc.
+Isso instalará o WSL 2 e o Ubuntu automaticamente. Após isso, reinicie o PC.
 
 **Configurar o Ubuntu**
 
@@ -77,35 +84,36 @@ ninja --version
 
 Se aparecer um número de versão, significa que está funcionando.
 
-#### Abra o vscode e baixe a extensão do wsl
+#### Configurar o VSCode com WSL
 
-![WSL Extension](/img/extensaoWsl.png)
+Abra o VSCode e instale a extensão do WSL:
 
-Reinicie o vscode
+![WSL Extension](/img/wsl.png)
+
+Reinicie o VSCode para aplicar as mudanças.
 
 ### Iniciando o Projeto
 
 #### Clonar o Repositório
 
-Crie uma pasta dentro do Ubuntu (Wsl) e faça o clone do repositorio
+Pesquise por Ubuntu na barra de pesquisa do windows e inicie.
+
+Crie uma pasta dentro do Ubuntu e faça o clone do repositório:
 
 ```bash
 mkdir repo
 cd repo
 ```
 
-Clone o repositório do projeto no GitHub: [Repo official](https://github.com/lvgl/lv_port_pc_vscode)
+Clone o repositório do projeto no GitHub: [Repo oficial](https://github.com/lvgl/lv_port_pc_vscode)
 
 ```bash
-sudo apt-get install gettext
-git config --global http.postBuffer 524288000
-
 git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
 ```
 
 O parâmetro `--recursive` garante que todos os submódulos do projeto também sejam baixados.
 
-Entre no projeto
+Entre no projeto:
 
 ```bash 
 sudo apt-get install wget
@@ -113,12 +121,11 @@ cd lv_port_pc_vscode
 code .
 ```
 
-
 ### Configurando o Projeto
 
-#### Verifique os submodule 
+#### Verificar Submódulos
 
-Abra as pastas lvgl e freeRtos e verifique se elas estao vazias, se estiver vazia apague a pasta do projeto e escreva o seguinte comando no terminal:
+Abra as pastas `lvgl` e `freeRtos` e verifique se elas estão vazias. Se estiverem vazias, apague a pasta do projeto e execute o seguinte comando no terminal:
 
 ```bash
 sudo apt update
@@ -130,7 +137,7 @@ git submodule update --remote lvgl
 git submodule update --remote freertos
 ```
 
-Ou simplesmente vc pode copiar e colocar a pasta lvgl e freertos de um projeto existente para o seu
+Ou simplesmente copie e cole as pastas `lvgl` e `freertos` de um projeto existente para o seu.
 
 #### Ajustar Configurações do Build
 
@@ -227,9 +234,9 @@ sudo apt install -y openbox xorg libsdl2-2.0-0 libsdl2-dev mesa-utils
 
 #### Instalar o Driver do Touch
 
-Baixe o driver do site oficial TouchKit em um pc com internet: [Link do driver](https://www.eeti.com/drivers_Linux.html)
+Baixe o driver do site oficial TouchKit em um PC com internet: [Link do driver](https://www.eeti.com/drivers_Linux.html)
 
-Pase o arquivo para o pendriver e conecte na ihm
+Passe o arquivo para o pendrive e conecte na IHM.
 
 Copie para a IHM e descompacte:
 
