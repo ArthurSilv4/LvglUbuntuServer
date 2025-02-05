@@ -97,6 +97,9 @@ cd repo
 Clone o repositório do projeto no GitHub: [Repo official](https://github.com/lvgl/lv_port_pc_vscode)
 
 ```bash
+sudo apt-get install gettext
+git config --global http.postBuffer 524288000
+
 git clone --recursive https://github.com/lvgl/lv_port_pc_vscode
 ```
 
@@ -115,11 +118,19 @@ code .
 
 #### Verifique os submodule 
 
-Abra as pastas lvgl e freeRtos e verifique se elas estao vazias, se estiver vazia escreva o seguinte comando no terminal:
+Abra as pastas lvgl e freeRtos e verifique se elas estao vazias, se estiver vazia apague a pasta do projeto e escreva o seguinte comando no terminal:
 
 ```bash
-git submodule update --init --recursive
+sudo apt update
+sudo apt install git
+
+git submodule update --remote --recursive
+
+git submodule update --remote lvgl
+git submodule update --remote freertos
 ```
+
+Ou simplesmente vc pode copiar e colocar a pasta lvgl e freertos de um projeto existente para o seu
 
 #### Ajustar Configurações do Build
 
