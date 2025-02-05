@@ -1,33 +1,4 @@
-# Sumário
-1. [Ambiente de Desenvolvimento](#ambiente-de-desenvolvimento)
-    1. [Configurando o Ambiente WSL](#configurando-o-ambiente-wsl)
-        1. [Instalar o WSL](#instalar-o-wsl)
-        2. [Instalar Dependências](#instalar-dependências)
-        3. [Configurar o VSCode com WSL](#configurar-o-vscode-com-wsl)
-    2. [Iniciando o Projeto](#iniciando-o-projeto)
-        1. [Clonar o Repositório](#clonar-o-repositório)
-    3. [Configurando o Projeto](#configurando-o-projeto)
-        1. [Verificar Submódulos](#verificar-submódulos)
-        2. [Ajustar Configurações do Build](#ajustar-configurações-do-build)
-    4. [Compilar o Projeto](#compilar-o-projeto)
-2. [IHM](#ihm)
-    1. [Instalar o Ubuntu Server na IHM](#instalar-o-ubuntu-server-na-ihm)
-        1. [Baixar a ISO](#baixar-a-iso)
-        2. [Criar um Pendrive Bootável com Rufus](#criar-um-pendrive-bootável-com-rufus)
-        3. [Instalar o Ubuntu Server](#instalar-o-ubuntu-server)
-    2. [Possíveis Erros](#possíveis-erros)
-    3. [Instalar Pacotes Necessários](#instalar-pacotes-necessários)
-    4. [Configurar o Touchscreen](#configurar-o-touchscreen)
-        1. [Instalar o Driver do Touch](#instalar-o-driver-do-touch)
-        2. [Testar o Touch](#testar-o-touch)
-        3. [Configurar o Mapeamento do Touch](#configurar-o-mapeamento-do-touch)
-    5. [Transferir o Binário do LVGL](#transferir-o-binário-do-lvgl)
-    6. [Configurar o LVGL para Iniciar Automaticamente](#configurar-o-lvgl-para-iniciar-automaticamente)
-3. [Depois de Executado](#depois-de-executado)
-
----
-
-## Ambiente de Desenvolvimento
+## Configurando o Ambiente de Desenvolvimento
 
 ### Configurando o Ambiente WSL
 
@@ -43,22 +14,30 @@ Pressione `Windows + R`, digite `cmd` e pressione `Enter`.
 
 No terminal, digite:
 
-```powershell
+```bash
 wsl --install
 ```
 
-Isso instalará o WSL 2 e o Ubuntu automaticamente. Após isso, reinicie o PC.
+Isso instalará o WSL 2 e o Ubuntu automaticamente.
+
+Após isso, reinicie o PC.
 
 **Configurar o Ubuntu**
 
-Após a instalação, o Ubuntu será iniciado automaticamente. Configure um nome de usuário e senha conforme solicitado.
+Após a instalação, o Ubuntu será iniciado automaticamente. 
+
+Configure um nome de usuário e senha conforme solicitado.
 
 **Atualizar o sistema**
 
 Após o primeiro login no Ubuntu, execute:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update
+```
+
+```bash
+sudo apt upgrade
 ```
 
 Isso garantirá que todos os pacotes estejam atualizados.
@@ -90,13 +69,13 @@ Abra o VSCode e instale a extensão do WSL:
 
 ![WSL Extension](/img/wsl.png)
 
-Reinicie o VSCode para aplicar as mudanças.
+Feche e abre o vscode para aplicar a extensão.
 
 ### Iniciando o Projeto
 
 #### Clonar o Repositório
 
-Pesquise por Ubuntu na barra de pesquisa do windows e inicie.
+Pesquise por "Ubuntu" na barra de pesquisa do Windows e inicie.
 
 Crie uma pasta dentro do Ubuntu e faça o clone do repositório:
 
