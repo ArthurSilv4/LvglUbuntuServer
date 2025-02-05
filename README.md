@@ -131,7 +131,9 @@ code .
 
 #### Verificar Submódulos
 
-Abra as pastas `lvgl` e `freeRtos` e verifique se elas estão vazias. Se estiverem vazias, apague a pasta do projeto e execute o seguinte comando no terminal:
+Abra as pastas `lvgl` e `freeRtos` e **verifique se elas estão vazias**.
+
+Se estiverem vazias, apague a pasta do projeto e execute o seguinte comando no terminal:
 
 ```bash
 sudo apt update
