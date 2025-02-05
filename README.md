@@ -1,12 +1,12 @@
 # Sumário
 1. [Ambiente de Desenvolvimento](#ambiente-de-desenvolvimento)
     1. [Configurando o Ambiente WSL](#configurando-o-ambiente-wsl)
-        1. [Instalar o WSL](#instalar-o-wsl)
-        2. [Instalar Dependências](#instalar-dependências)
+        1. [Instalar o WSL](#1-instalar-o-wsl)
+        2. [Instalar Dependências](#2-instalar-dependências)
     2. [Iniciando o Projeto](#iniciando-o-projeto)
-        1. [Clonar o Repositório](#clonar-o-repositório)
+        1. [Clonar o Repositório](#1-clonar-o-repositório)
     3. [Configurando o Projeto](#configurando-o-projeto)
-        1. [Ajustar Configurações do Build](#ajustar-configurações-do-build)
+        1. [Ajustar Configurações do Build](#1-ajustar-configurações-do-build)
     4. [Compilar o Projeto](#compilar-o-projeto)
 2. [IHM](#ihm)
     1. [Instalar o Ubuntu](#instalar-o-ubuntu)
@@ -18,7 +18,6 @@
     6. [Passar o Binário e Executar](#passar-o-binário-e-executar)
     7. [Iniciar o lvgl ao iniciar o sistema](#iniciar-o-lvgl-ao-iniciar-o-sistema)
 3. [Depois de Executado](#depois-de-executado)
-
 ---
 
 ## Ambiente de Desenvolvimento
