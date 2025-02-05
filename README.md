@@ -122,11 +122,28 @@ ninja
 
 # IHM
 
-## Instalar o Ubuntu
 
-Baixe a ISO do Ubuntu e instale no dispositivo. [Link da iso](https://ubuntu.com/download/server)
+### 1. Instalar o Ubuntu Server na IHM
 
-## Possíveis erros
+#### 1.1 Baixar a ISO
+
+Acesse o site oficial do Ubuntu Server e baixe a versão compatível: [Link para download](https://ubuntu.com/download/server)
+
+#### 1.2 Criar um Pendrive Bootável com Rufus
+
+1. Conecte um pendrive (mínimo 8GB) no PC.
+2. Baixe e instale o Rufus.
+3. Abra o Rufus e selecione:
+    - **Dispositivo** → Escolha o pendrive.
+    - **Boot Selection** → Clique em "Selecionar" e escolha a ISO do Ubuntu Server.
+4. Clique em "Iniciar" e aguarde a criação do pendrive bootável.
+
+#### 1.3 Instalar o Ubuntu Server
+
+1. Insira o pendrive na IHM e reinicie.
+2. No boot, selecione o pendrive como dispositivo de inicialização.
+
+### Possíveis erros
 
 <details>
 <summary>Erro de rede</summary>
@@ -151,38 +168,49 @@ sudo netplan apply
 
 </details>
 
-## Instalar as Bibliotecas
+### 2. Instalar Pacotes Necessários
 
-Instale as bibliotecas necessárias:
+Atualize e instale os pacotes essenciais:
 
 ```bash
-sudo apt install build-essential xorg xserver-xorg xinit libgl1-mesa-dev libinput-dev libudev-dev
-sudo apt install openbox xorg
-sudo apt install libsdl2-2.0-0 libsdl2-dev mesa-utils
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y build-essential xorg xserver-xorg xinit libgl1-mesa-dev libinput-dev libudev-dev
+sudo apt install -y openbox xorg libsdl2-2.0-0 libsdl2-dev mesa-utils
 ```
 
-## Instalar o Driver de Touch na IHM
+✅ **Pacotes importantes:**
 
-1. Baixe o driver do TouchKit: [Link do driver](https://www.eeti.com/drivers_Linux.html)
-2. Copie o arquivo para a IHM, descompacte, entre na pasta e execute o arquivo `.sh`:
+- `xorg`, `xserver-xorg` → Servidor gráfico
+- `libsdl2-dev` → Biblioteca SDL2 para renderização gráfica
+
+### 3. Configurar o Touchscreen
+
+#### 3.1 Instalar o Driver do Touch
+
+Baixe o driver do site oficial TouchKit em um pc com internet: [Link do driver](https://www.eeti.com/drivers_Linux.html)
+
+Pase o arquivo para o pendriver e conecte na ihm
+
+Copie para a IHM e descompacte:
 
 ```bash
 sudo apt install p7zip-full -y
-
-cp arquivo /home/branqs
-7z x arquivo.7z
-
-cd arquivo
+7z x driver.7z
+cd driver
 chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
-3. Instale o `evtest` para verificar se o touch está funcionando:
+#### 3.2 Testar o Touch
+
+Instale e rode o evtest:
 
 ```bash
-sudo apt install evtest
+sudo apt install evtest -y
 sudo evtest
 ```
+
+Escolha o dispositivo correto e toque na tela para verificar a resposta.
 
 ## Configurar Mapeamento de Touch
 
