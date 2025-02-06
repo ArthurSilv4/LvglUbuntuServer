@@ -60,6 +60,10 @@ Abra o VSCode e instale a extensão do WSL:
 
 Feche e abra o VSCode para aplicar a extensão.
 
+Verifique se a extensão foi instalada corretamente:
+
+![WSL Extension2](/img/wslExtensao.png)
+
 ---
 
 ### Inicie um Projeto
