@@ -356,6 +356,7 @@ Adicione:
 xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
 ./main
 ```
+Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
 
 Dê permissão:
 
@@ -376,6 +377,8 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
     startx
 fi
 ```
+
+Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
 
 Reinicie a IHM:
 
