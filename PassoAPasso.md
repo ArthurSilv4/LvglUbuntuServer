@@ -26,7 +26,9 @@ Configure um nome de usuário e senha conforme solicitado.
 
 **Atualize o sistema**
 
-Após o primeiro login no Ubuntu, execute:
+Após o primeiro login no Ubuntu:
+
+Caso esteja conectado a uma VPN, desconecte-se e execute o seguinte código:
 
 ```bash
 sudo apt update
