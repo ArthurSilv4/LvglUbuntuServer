@@ -1,16 +1,3 @@
-## Sumário
-1. [Configurar o ambiente de desenvolvimento](#configurar-o-ambiente-de-desenvolvimento)
-    1. [Instale o WSL](#instale-o-wsl)
-    2. [Configure o VSCode com WSL](#configure-o-vscode-com-wsl)
-    3. [Inicie um Projeto](#inicie-um-projeto)
-2. [Configurando IHM](#configurando-ihm)
-    1. [Instale o Ubuntu Server na IHM](#instale-o-ubuntu-server-na-ihm)
-    2. [Instale as bibliotecas](#instale-as-bibliotecas)
-    3. [Configure o Driver de Touch](#configure-o-driver-de-touch)
-    4. [Transfira o binário para o LVGL](#transfira-o-binario-para-o-lvgl)
-    5. [Configure o LVGL para iniciar automaticamente](#configure-o-lvgl-para-iniciar-automaticamente)
-    6. [Depois de executar](#depois-de-executar)
-
 ## Configurar o ambiente de desenvolvimento
 
 ### Instale o WSL
