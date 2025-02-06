@@ -213,7 +213,185 @@ sudo mount /dev/sdb1 /mnt/pendrive
 ```
 
 Copie o arquivo para a IHM:
+
+**Substitue o `nomeDoArquivo` pelo nome do arquivo baixado no pendriver**
+
 ```bash
 sudo cp /mnt/pendrive/nomeDoArquivo /home/$USER
 ```
+
+Descompacte o arquivo executando o seguinte comando:
+
+```bash
+sudo apt install p7zip-full -y
+```
+
+```bash
+7z x nomeDoArquivo
+```
+
+```bash
+cd nomeDoArquivo
+```
+
+```bash
+chmod +x ./setup.sh
+```
+
+```bash
+sudo ./setup.sh
+```
+
+Agora teste se o touch esta funcionando escrevendo o seguinte comando:
+
+```bash
+sudo apt install evtest -y
+sudo evtest
+```
+
+Após escrever o comando, o sistema vai perguntar qual driver você pretende testar. Identifique qual é o número do driver do touch e digite-o.
+
+Após isso, dê um clique na tela e veja se as coordenadas do touch aparecem.
+
+**Configure o mapeamento do touch**
+
+Instale a blibioteca:
+```bash
+sudo apt install xinput-calibrator -y
+```
+
+Execute o X11:
+```bash
+startx
+```
+
+Aperte `CTRL + ALT + F2` faça login e escreva o seguinte comando:
+```bash
+export DISPLAY=:0
+```
+
+```bash
+xinput_calibrator
+```
+
+Volte para a tela inicial apertando `CTRL + ALT + F1` e calibre o touch clicando nos alvos.
+
+Após a calibração adicione a configuração no arquivo digitando o seguinte comando:
+
+Volte para `CTRL + ALT + F2` e digite:
+```
+sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
+```
+
+No arquivo digite a seguinte função:
+
+```bash
+Section "InputClass"
+    Identifier "calibration"
+    MatchProduct "eGalaxTouch Virtual Device for Single"
+    Option "MinX" "23293"
+    Option "MaxX" "23468"
+    Option "MinY" "46570"
+    Option "MaxY" "46741"
+    Option "SwapXY" "1"
+    Option "InvertX" "0"
+    Option "InvertY" "0"
+EndSection
+```
+
+Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
+
+**Transfira o binario para o lvgl**
+
+No pc de desenvolvimento fora da IHM passe a pasta `bin` do projeto para o pendriver e monte o pendriver na IHM:
+
+Conecte o pendriver na IHM e escreva os seguintes comandos:
+
+```bash
+lsblk
+```
+
+A saída vai ser algo parecido com:
+
+```markdown
+| NAME | MAJ:MIN | RM | SIZE | RO | TYPE | MOUNTPOINT |
+|------|---------|----|------|----|------|------------|
+| sda  | 8:0     | 0  | 100G | 0  | disk |            |
+| ├─sda1 | 8:1   | 0  | 512M | 0  | part | /boot      |
+| ├─sda2 | 8:2   | 0  | 99.5G| 0  | part | /          |
+| sdb  | 8:16    | 1  | 16G  | 0  | disk |            |
+| └─sdd1 | 8:17  | 1  | 16G  | 0  | part |            |
+```
+
+Monte o pendrive executando o seguinte código:
+```bash
+mkdir /mnt/pendrive
+sudo mount /dev/sdd1 /mnt/pendrive
+```
+
+```bash
+sudo cp /mnt/pendrive/bin /home/$USER
+```
+
+De permissao para o binario:
+```bash
+chmod +x /home/$USER/bin/main
+```
+
+```bash
+startx /home/$USER/bin/main
+```
+
+**Configure o LVGL para iniciar automaticamente**
+
+Crie o arquivo `~/.xinitrc`:
+
+```bash
+nano ~/.xinitrc
+```
+
+Adicione:
+
+```plaintext
+xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
+./main
+```
+
+Dê permissão:
+
+```bash
+chmod +x ~/.xinitrc
+```
+
+Edite o `.bash_profile` para iniciar automaticamente:
+
+```bash
+nano ~/.bash_profile
+```
+
+Adicione:
+
+```plaintext
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
+    startx
+fi
+```
+
+Reinicie a IHM:
+
+```bash
+sudo reboot
+```
+
+Agora, o LVGL iniciará automaticamente ao ligar! 
+
+### Depois de executar
+
+Para fechar todas as abas, aperte `CTRL + ALT + F1` ao `F6` para abrir uma nova aba e execute:
+
+```bash
+sudo pkill X
+```
+
+
 
