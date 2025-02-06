@@ -43,7 +43,7 @@ Isso garantirá que todos os pacotes estejam atualizados.
 No terminal do Ubuntu, instale os pacotes necessários para compilar o projeto:
 
 ```bash
-sudo apt install -y build-essential cmake ninja-build git
+sudo apt install -y build-essential cmake ninja-build git libsdl2-dev
 ```
 
 ---
