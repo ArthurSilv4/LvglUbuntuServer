@@ -1,3 +1,15 @@
+## Sumário
+1. [Configurar o ambiente de desenvolvimento](#configurar-o-ambiente-de-desenvolvimento)
+    1. [Instale o WSL](#instale-o-wsl)
+    2. [Configure o VSCode com WSL](#configure-o-vscode-com-wsl)
+    3. [Inicie um Projeto](#inicie-um-projeto)
+2. [Configurando IHM](#configurando-ihm)
+    1. [Instale o Ubuntu Server na IHM](#instale-o-ubuntu-server-na-ihm)
+    2. [Instale as bibliotecas](#instale-as-bibliotecas)
+    3. [Configure o Driver de Touch](#configure-o-driver-de-touch)
+    4. [Transfira o binário para o LVGL](#transfira-o-binario-para-o-lvgl)
+    5. [Configure o LVGL para iniciar automaticamente](#configure-o-lvgl-para-iniciar-automaticamente)
+    6. [Depois de executar](#depois-de-executar)
 
 ## Configurar o ambiente de desenvolvimento
 
@@ -182,7 +194,7 @@ sudo apt install -y openbox xorg libsdl2-2.0-0 libsdl2-dev mesa-utils
 
 Obs: A IHM deve estar conectada à internet.
 
-### Configurando Driver de Touch
+### Configure o Driver de Touch
 
 Baixe o driver do site oficial TouchKit em um PC que não seja a IHM: [Link do driver](https://www.eeti.com/drivers_Linux.html).
 
@@ -214,7 +226,7 @@ sudo mount /dev/sdb1 /mnt/pendrive
 
 Copie o arquivo para a IHM:
 
-**Substitue o `nomeDoArquivo` pelo nome do arquivo baixado no pendriver**
+**Substitua o `nomeDoArquivo` pelo nome do arquivo baixado no pendrive**
 
 ```bash
 sudo cp /mnt/pendrive/nomeDoArquivo /home/$USER
@@ -242,7 +254,7 @@ chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
-Agora teste se o touch esta funcionando escrevendo o seguinte comando:
+Agora teste se o touch está funcionando escrevendo o seguinte comando:
 
 ```bash
 sudo apt install evtest -y
@@ -255,7 +267,7 @@ Após isso, dê um clique na tela e veja se as coordenadas do touch aparecem.
 
 **Configure o mapeamento do touch**
 
-Instale a blibioteca:
+Instale a biblioteca:
 ```bash
 sudo apt install xinput-calibrator -y
 ```
@@ -265,7 +277,7 @@ Execute o X11:
 startx
 ```
 
-Aperte `CTRL + ALT + F2` faça login e escreva o seguinte comando:
+Aperte `CTRL + ALT + F2`, faça login e escreva o seguinte comando:
 ```bash
 export DISPLAY=:0
 ```
@@ -276,14 +288,14 @@ xinput_calibrator
 
 Volte para a tela inicial apertando `CTRL + ALT + F1` e calibre o touch clicando nos alvos.
 
-Após a calibração adicione a configuração no arquivo digitando o seguinte comando:
+Após a calibração, adicione a configuração no arquivo digitando o seguinte comando:
 
 Volte para `CTRL + ALT + F2` e digite:
 ```
 sudo nano /etc/X11/xorg.conf.d/99-calibration.conf
 ```
 
-No arquivo digite a seguinte função:
+No arquivo, digite a seguinte função:
 
 ```bash
 Section "InputClass"
@@ -299,13 +311,13 @@ Section "InputClass"
 EndSection
 ```
 
-Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
+Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`.
 
-**Transfira o binario para o lvgl**
+**Transfira o binário para o LVGL**
 
-No pc de desenvolvimento fora da IHM passe a pasta `bin` do projeto para o pendriver e monte o pendriver na IHM:
+No PC de desenvolvimento fora da IHM, passe a pasta `bin` do projeto para o pendrive e monte o pendrive na IHM:
 
-Conecte o pendriver na IHM e escreva os seguintes comandos:
+Conecte o pendrive na IHM e escreva os seguintes comandos:
 
 ```bash
 lsblk
@@ -333,7 +345,7 @@ sudo mount /dev/sdd1 /mnt/pendrive
 sudo cp /mnt/pendrive/bin /home/$USER
 ```
 
-De permissao para o binario:
+Dê permissão para o binário:
 ```bash
 chmod +x /home/$USER/bin/main
 ```
@@ -356,7 +368,7 @@ Adicione:
 xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
 ./main
 ```
-Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
+Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`.
 
 Dê permissão:
 
@@ -378,7 +390,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
 fi
 ```
 
-Salve apertando `CTRL + O` depois aperte `ENTER` e em seguida aperte `CTRL + X`
+Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`.
 
 Reinicie a IHM:
 
@@ -395,6 +407,3 @@ Para fechar todas as abas, aperte `CTRL + ALT + F1` ao `F6` para abrir uma nova 
 ```bash
 sudo pkill X
 ```
-
-
-
