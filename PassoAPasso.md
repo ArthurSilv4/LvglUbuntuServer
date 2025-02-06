@@ -109,7 +109,7 @@ git submodule update --remote --recursive
 
 Verifique se as pastas `lvgl` e `freeRtos` estão com seus arquivos agora.
 
-Caso os arquivos não sejam carregados, o problema pode ser na sua conexão com a internet.
+Caso os arquivos não sejam carregados, o problema pode estar na sua conexão com a internet. Tente conectar-se a outra rede e rodar o comando novamente.
 
 **Ajuste a configuração de build**
 
