@@ -50,6 +50,8 @@ sudo apt install -y build-essential cmake ninja-build git libsdl2-dev
 
 ### Configure o VSCode com WSL
 
+Baixe o Vscode: [Link de download](https://code.visualstudio.com/)
+
 Abra o VSCode e instale a extensão do WSL:
 
 ![WSL Extension](/img/wsl.png)
