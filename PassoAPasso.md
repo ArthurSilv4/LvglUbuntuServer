@@ -139,6 +139,19 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=x86-64 -mtune=generic")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -mtune=generic")
 ```
 
+**Ajuste a resolução do projeto**
+ 
+No arquivo `main.c` altera a seguinte linha:
+
+ ```C
+hal_init(320, 480);
+ ```
+Para:
+
+```C
+hal_init(1024, 768);
+```
+
 **Compile o projeto**
 
 No VSCode, aperte `CTRL + SHIFT + "`.
