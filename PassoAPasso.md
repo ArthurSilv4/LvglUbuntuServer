@@ -313,6 +313,12 @@ Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`
 
 No PC de desenvolvimento fora da IHM, passe a pasta `bin` do projeto para o pendrive e monte o pendrive na IHM:
 
+Para passar o arquivo, você pode digitar o seguinte comando no terminal do VSCode:
+```bash
+explorer.exe .
+```
+Isso abrirá o explorador de arquivos, nele você pode copiar a pasta `bin` e colar no seu pendrive.
+
 Conecte o pendrive na IHM e escreva os seguintes comandos:
 
 ```bash
