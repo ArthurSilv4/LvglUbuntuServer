@@ -240,7 +240,7 @@ Copie o arquivo para a IHM:
 sudo cp /mnt/pendrive/nomeDoArquivo /home/$USER
 ```
 
-Descompacte o arquivo executando o seguinte comando:
+Descompacte o arquivo e execute os seguintes comandos:
 
 ```bash
 sudo apt install p7zip-full -y
