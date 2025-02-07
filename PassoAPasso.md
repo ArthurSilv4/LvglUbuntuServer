@@ -343,6 +343,22 @@ mkdir /mnt/pendrive
 sudo mount /dev/sdd1 /mnt/pendrive
 ```
 
+---
+
+Caso sua saída esteja diferente, substitua o comando pela sua saída como no exemplo:
+
+```markdown
+| sdb  | 8:16    | 1  | 16G  | 0  | disk |            |
+| └─sdc1 | 8:17  | 1  | 16G  | 0  | part |            |
+```
+
+```bash
+mkdir /mnt/pendrive
+sudo mount /dev/sdc1 /mnt/pendrive
+```
+
+---
+
 ```bash
 sudo cp /mnt/pendrive/bin /home/$USER
 ```
