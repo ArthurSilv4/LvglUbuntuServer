@@ -380,7 +380,7 @@ Crie o arquivo `~/.xinitrc`:
 nano ~/.xinitrc
 ```
 
-Adicione:
+Adicione o seguinte comando:
 
 ```plaintext
 xinput set-prop "eGalaxTouch Virtual Device for Single" "Coordinate Transformation Matrix" -0.01 -1 1 1 0.1 0 0 0 1
@@ -400,7 +400,7 @@ Edite o `.bash_profile` para iniciar automaticamente:
 nano ~/.bash_profile
 ```
 
-Adicione:
+Escreva o comando:
 
 ```plaintext
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
