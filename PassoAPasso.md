@@ -416,7 +416,7 @@ nano ~/.bash_profile
 Escreva o comando:
 
 ```plaintext
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; então
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 ```
