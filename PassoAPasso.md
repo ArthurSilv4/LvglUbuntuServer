@@ -248,8 +248,9 @@ chmod +x ./setup.sh
 ```bash
 sudo ./setup.sh
 ```
+Faça a instalação padrão do driver.
 
-Agora teste se o touch está funcionando escrevendo o seguinte comando:
+Depois de instalar o driver teste se o touch está funcionando escrevendo o seguinte comando:
 
 ```bash
 sudo apt install evtest -y
