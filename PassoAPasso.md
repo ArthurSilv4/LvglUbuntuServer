@@ -193,9 +193,15 @@ Durante a instalação, certifique-se de que a IHM está com o modem de internet
 Siga a instalação padrão do Ubuntu Server: [Video Tutorial](https://www.youtube.com/watch?v=AWFLGuvClcM).
 
 ### Instale as bibliotecas
+Após instalar o Ubuntu Server, execute os seguintes comandos no terminal da IHM:
 
-Após fazer a instalação do Ubuntu Server, escreva os seguintes comandos no terminal da IHM:
+Verifique se está no caminho correto, por exemplo:
+```bash
+Usuario@usuario:~$
+```
+Caso não esteja, você pode apertar o atalho `Ctrl + C` para voltar.
 
+Execute o comando:
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y build-essential xorg xserver-xorg xinit libgl1-mesa-dev libinput-dev libudev-dev
