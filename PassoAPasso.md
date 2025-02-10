@@ -214,6 +214,10 @@ Obs: A IHM deve estar conectada à internet.
 
 Baixe o driver do site oficial TouchKit em um PC que não seja a IHM: [Link do driver](https://www.eeti.com/drivers_Linux.html).
 
+Verifique se é a versão mais recente:
+
+![imageDriver](/img/driver.png)
+
 Passe o arquivo para um pendrive formatado.
 
 Conecte o pendrive na IHM ligada e execute o seguinte comando:
