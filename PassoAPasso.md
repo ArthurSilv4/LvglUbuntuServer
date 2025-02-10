@@ -188,6 +188,8 @@ Crie um Pendrive Bootável com Rufus
 
 Após terminar de criar o pendrive bootável, conecte o pendrive na IHM desligada e a ligue apertando `Delete` até abrir a tela da BIOS. Após isso, vá até boot e coloque o pendrive em primeiro lugar para que ele inicie o sistema com o Ubuntu Server.
 
+Durante a instalação, certifique-se de que a IHM está com o modem de internet conectado e ligado.
+
 Siga a instalação padrão do Ubuntu Server: [Video Tutorial](https://www.youtube.com/watch?v=AWFLGuvClcM).
 
 ### Instale as bibliotecas
