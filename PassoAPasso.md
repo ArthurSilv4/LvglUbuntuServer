@@ -235,14 +235,24 @@ A saída vai ser algo parecido com:
 ```
 
 Monte o pendrive executando o seguinte código:
+
+```bash
+sudo chmod 777 /mnt
+```
+
 ```bash
 mkdir /mnt/pendrive
-sudo mount /dev/sdb1 /mnt/pendrive
 ```
+
+```bash
+sudo mount /dev/sdb1 /mnt/pendrive
+````
 
 Copie o arquivo para a IHM:
 
-**Substitua o `nomeDoArquivo` pelo nome do arquivo baixado no pendrive**
+**Substitua o `nomeDoArquivo` pelo nome do arquivo do touch baixado no pendrive**
+
+Você pode digitar o início do nome do arquivo e apertar a tecla `Tab` para completar o nome.
 
 ```bash
 sudo cp /mnt/pendrive/nomeDoArquivo /home/$USER
