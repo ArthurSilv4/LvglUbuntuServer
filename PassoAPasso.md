@@ -396,7 +396,6 @@ Caso sua saída esteja diferente, substitua o comando pela sua saída como no ex
 ```
 
 ```bash
-mkdir /mnt/pendrive
 sudo mount /dev/sdc1 /mnt/pendrive
 ```
 
