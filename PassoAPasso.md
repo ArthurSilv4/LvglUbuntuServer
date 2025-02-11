@@ -218,7 +218,8 @@ Verifique se é a versão mais recente:
 
 ![imageDriver](/img/driver.png)
 
-Passe o arquivo para um pendrive formatado.
+
+Formate o pendriver novamente e passe o arquivo.
 
 Conecte o pendrive na IHM ligada e execute o seguinte comando:
 
@@ -277,6 +278,10 @@ cd nomeDoArquivo
 ```
 
 ```bash
+sudo apt install lightdm
+```
+
+```bash
 chmod +x ./setup.sh
 ```
 
@@ -284,6 +289,9 @@ chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 Faça a instalação padrão do driver.
+
+![install](/img/install.jpeg)
+Escolha a primeira opção e confirme as demais
 
 Depois de instalar o driver teste se o touch está funcionando escrevendo o seguinte comando:
 
