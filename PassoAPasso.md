@@ -304,6 +304,7 @@ Após escrever o comando, o sistema vai perguntar qual driver você pretende tes
 
 Após isso, dê um clique na tela e veja se as coordenadas do touch aparecem.
 
+<!--
 **Configure o mapeamento do touch**
 
 Instale a biblioteca:
@@ -350,7 +351,7 @@ Section "InputClass"
 EndSection
 ```
 
-Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`.
+Salve apertando `CTRL + O`, depois aperte `ENTER` e em seguida aperte `CTRL + X`. -->
 
 **Transfira o binário para o LVGL**
 
