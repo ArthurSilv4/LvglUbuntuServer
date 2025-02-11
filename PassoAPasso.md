@@ -383,7 +383,6 @@ A saída vai ser algo parecido com:
 
 Monte o pendrive executando o seguinte código:
 ```bash
-mkdir /mnt/pendrive
 sudo mount /dev/sdd1 /mnt/pendrive
 ```
 
