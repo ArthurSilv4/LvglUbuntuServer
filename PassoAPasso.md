@@ -365,6 +365,10 @@ Isso abrirá o explorador de arquivos, nele você pode copiar a pasta `bin` e co
 
 Conecte o pendrive na IHM e escreva os seguintes comandos:
 
+```bah
+sudo systemctl set-default multi-user.target
+```
+
 ```bash
 lsblk
 ```
